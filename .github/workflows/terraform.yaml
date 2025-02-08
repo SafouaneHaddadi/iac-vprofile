@@ -69,6 +69,7 @@ jobs:
        - name: Terraform plan
          id: plan  # Identifiant de l'étape
          run: terraform plan -no-color -input=false -out planfile  # Génère un plan sans couleur et sans interaction et on stocke toutes ces info dans un fichier 'planfile' qui sera utilisé pr appliquer les modif
+         working-directory: terraform
          continue-on-error: true  # Permet de continuer même si cette étape échoue (pr etre absolument sûr on a une autre étape pr cela)
 
        # Étape pour vérifier le statut du plan Terraform
