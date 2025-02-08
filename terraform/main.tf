@@ -18,3 +18,5 @@ locals {
   # Nom du cluster, défini par la variable clusterName
   cluster_name = var.clusterName
 }
+
+#####
