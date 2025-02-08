@@ -54,16 +54,19 @@ jobs:
        - name: Terraform init
          id: init  # Identifiant de l'étape pour référence ultérieure
          run: terraform init -backend-config="bucket=$BUCKET_TF_STATE"  # Initialise Terraform avec le backend S3 pr stocker l'état
+         working-directory: terraform
 
        # Étape pour vérifier le formatage du code Terraform
        - name: Terraform format
          id: fmt  # Identifiant de l'étape
          run: terraform fmt -check  # Vérifie si le code est correctement formaté. Si il n'est pas bien formaté, il renverra un codde de sortie 'non zero' ce qui fera échoué le workflow 
+         working-directory: terraform
 
        # Étape pour valider la configuration Terraform
        - name: Terraform validate
          id: validate  # Identifiant de l'étape
          run: terraform validate  # Valide la configuration pour détecter les erreurs
+         working-directory: terraform
 
        # Étape pour générer un plan d'exécution Terraform
        - name: Terraform plan
