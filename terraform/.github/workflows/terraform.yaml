@@ -75,3 +75,5 @@ jobs:
        - name: Terraform plan status
          if: steps.plan.outcome == 'failure'  # Condition pour exécuter cette étape si le plan a échoué
          run: exit 1  # Force l'échec du job si le plan a échoué
+
+##
