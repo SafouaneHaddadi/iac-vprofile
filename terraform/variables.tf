@@ -19,3 +19,5 @@ variable "clusterName" {
   # Valeur par défaut de la variable, utilisée si aucune autre valeur n'est fournie
   default     = "vprofile-eks"
 }
+
+##
