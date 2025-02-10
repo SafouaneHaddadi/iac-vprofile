@@ -1,7 +1,7 @@
 provider "kubernetes" {
   # Endpoint du cluster EKS, utilisé pour interagir avec le cluster Kubernetes
-  host                   = module.eks.cluster_endpoint
-  
+  host = module.eks.cluster_endpoint
+
   # Certificat de l'autorité de certification du cluster, décodé depuis les données fournies par le module EKS
   cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
 }
