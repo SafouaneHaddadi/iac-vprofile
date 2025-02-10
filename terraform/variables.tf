@@ -6,7 +6,7 @@ variable "region" {
   type        = string
   
   # Valeur par défaut de la variable, utilisée si aucune autre valeur n'est fournie
-  default     = "us-east-2"
+  default     = "us-east-1"
 }
 
 variable "clusterName" {
