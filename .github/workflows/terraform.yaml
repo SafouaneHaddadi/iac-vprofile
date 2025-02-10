@@ -19,7 +19,7 @@ on:
       - main  # Branche principale
     # Chemins des fichiers qui déclenchent le workflow
     paths:
-      - terraform/**  # Tout fichier dans le répertoire terraform
+      - terraform/**  # Tout fichier dans le répertoire terraform (donc si on modifie que le fichier de Worfklow mais pas le dossier Terraform, le WF ne sera pas executé)
 
 # Variables d'environnement accessibles dans tout le workflow
 env:
