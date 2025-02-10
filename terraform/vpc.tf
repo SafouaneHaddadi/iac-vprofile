@@ -12,7 +12,8 @@ module "vpc" {
   cidr = "172.20.0.0/16"
 
   # Récupère les trois premières zones de disponibilité disponibles
-  azs  = slice(data.aws_availability_zones.available.names, 0, 3)
+  #azs  = slice(data.aws_availability_zones.available.names, 0, 3)
+  azs   = slice(data.aws_availability_zones.available.names, 0, min(length(data.aws_availability_zones.available.names), 3))
 
   # Sous-réseaux privés à créer avec leurs plages d'adresses IP
   private_subnets = ["172.20.1.0/24", "172.20.2.0/24", "172.20.3.0/24"]
