@@ -1,20 +1,32 @@
 output "cluster_name" {
+  # Une fois l'opération 'terraform apply' terminée avec succès, on obtiendra ces infos : 
+  # Description de la sortie, ici elle représente le nom du cluster EKS
   description = "Amazon Web Service EKS Cluster Name"
-  value       = module.eks.cluster_name
+
+  # Valeur de la sortie, ici elle récupère le nom du cluster depuis le module EKS
+  value = module.eks.cluster_name
 }
 
 output "cluster_endpoint" {
-  description = "Endpoint for Amazon Web Service EKS "
-  value       = module.eks.cluster_endpoint
+  # Description de la sortie, ici elle représente l'endpoint du cluster EKS
+  description = "Endpoint for Amazon Web Service EKS"
+
+  # Valeur de la sortie, ici elle récupère l'endpoint depuis le module EKS
+  value = module.eks.cluster_endpoint
 }
 
 output "region" {
+  # Description de la sortie, ici elle représente la région du cluster EKS
   description = "Amazon Web Service EKS Cluster region"
-  value       = var.region
+
+  # Valeur de la sortie, ici elle récupère la région depuis la variable définie
+  value = var.region
 }
 
-
 output "cluster_security_group_id" {
-  description = "Security group ID for the Amazon Web Service EKS Cluster "
-  value       = module.eks.cluster_security_group_id
+  # Description de la sortie, ici elle représente l'ID du groupe de sécurité pour le cluster EKS
+  description = "Security group ID for the Amazon Web Service EKS Cluster"
+
+  # Valeur de la sortie, ici elle récupère l'ID du groupe de sécurité depuis le module EKS
+  value = module.eks.cluster_security_group_id
 }
