@@ -91,7 +91,7 @@ jobs:
          id: apple
          if: github.ref == 'refs/heads/main' && github.event_name == 'push' #l'étape ne sera exécutée que si le code est poussé sur la branche principal
          run: terraform apply -auto-approve -input=false -parallelism=1  #permet d'appliquer les changements sans demander de confirmation. Il y'a un bug que les gens rencontrent concernant le fait que les modules EKS sont executé en parallele (donc on limite le nb de ressources qui peuvent être créées ou modifiées en parallèle à 1. Cela peut être utile pour éviter des conflits ou des problèmes de dépendance entre les ressources.)
-        
+         working-directory: terraform
       
        - name: Configure AWS credentials
          uses: aws-actions/configure-aws-credentials@v1 #Utilise une action GitHub préconçue pour configurer les identifiants
