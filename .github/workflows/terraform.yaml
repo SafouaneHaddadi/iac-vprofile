@@ -48,7 +48,8 @@ jobs:
        - name: Setup Terraform with specified version on the runner
          uses: hashicorp/setup-terraform@v2  # Utilise l'action pour installer Terraform
          with:
-           terraform version : 1.9.2
+           terraform version : 1.10.5
+           
 
        # Étape pour initialiser Terraform
        - name: Terraform init

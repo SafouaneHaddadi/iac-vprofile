@@ -49,7 +49,9 @@ terraform {
 
   # Version minimale requise de Terraform pour exécuter cette configuration
   #required_version = "~> 1.6.3"
-  required_version = "~> 1.9.2"
+  #required_version = "~> 1.9.2"
+  required_version = "~> 1.10.0"
+
 }
 
 #####
