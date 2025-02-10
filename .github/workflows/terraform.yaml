@@ -47,8 +47,8 @@ jobs:
        # Étape pour configurer Terraform sur le runner
        - name: Setup Terraform with specified version on the runner
          uses: hashicorp/setup-terraform@v2  # Utilise l'action pour installer Terraform
-         with:
-           terraform version : 1.6.3
+         #with:
+         #terraform version : 1.6.3
 
        # Étape pour initialiser Terraform
        - name: Terraform init
@@ -80,4 +80,4 @@ jobs:
          if: steps.plan.outcome == 'failure'  # Condition pour exécuter cette étape si le plan a échoué
          run: exit 1  # Force l'échec du job si le plan a échoué
 
-####
+##
