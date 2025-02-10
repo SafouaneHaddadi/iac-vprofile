@@ -42,3 +42,5 @@ module "vpc" {
     "kubernetes.io/role/internal-elb"             = 1            # Tag pour indiquer que ce sous-réseau est utilisé pour les ELB internes
   }
 }
+
+#
