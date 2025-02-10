@@ -1,6 +1,5 @@
 output "cluster_name" {
-  #une fois l'operation 'terraform apply'terminée avec succçs, on obtiendra ces infos : 
-
+  # Une fois l'opération 'terraform apply' terminée avec succès, on obtiendra ces infos : 
   # Description de la sortie, ici elle représente le nom du cluster EKS
   description = "Amazon Web Service EKS Cluster Name"
   
@@ -31,5 +30,3 @@ output "cluster_security_group_id" {
   # Valeur de la sortie, ici elle récupère l'ID du groupe de sécurité depuis le module EKS
   value       = module.eks.cluster_security_group_id
 }
-
-######""

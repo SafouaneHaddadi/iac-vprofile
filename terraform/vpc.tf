@@ -12,7 +12,7 @@ module "vpc" {
   cidr = "172.20.0.0/16"
 
   # Récupère les trois premières zones de disponibilité disponibles
-  #azs  = slice(data.aws_availability_zones.available.names, 0, 3)
+  # azs  = slice(data.aws_availability_zones.available.names, 0, 3)
   azs   = slice(data.aws_availability_zones.available.names, 0, min(length(data.aws_availability_zones.available.names), 3))
 
   # Sous-réseaux privés à créer avec leurs plages d'adresses IP
@@ -30,7 +30,7 @@ module "vpc" {
   # Activation des noms d'hôtes DNS pour la VPC
   enable_dns_hostnames = true
 
-  # Tags pour les sous-réseaux publics, utilisés pour l'intégration avec Kubernetes (pr que les clusters EKS fonctionnent sur le VPC, ces tags doivent etre mentionnées sur le subnet)
+  # Tags pour les sous-réseaux publics, utilisés pour l'intégration avec Kubernetes
   public_subnet_tags = {
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"  # Indique que ce sous-réseau est partagé avec le cluster
     "kubernetes.io/role/elb"                      = 1            # Tag pour indiquer que ce sous-réseau est utilisé pour les ELB (Elastic Load Balancer)
@@ -42,5 +42,3 @@ module "vpc" {
     "kubernetes.io/role/internal-elb"             = 1            # Tag pour indiquer que ce sous-réseau est utilisé pour les ELB internes
   }
 }
-
-#

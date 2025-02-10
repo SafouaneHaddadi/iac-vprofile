@@ -25,24 +25,20 @@ module "eks" {
 
   # Définition des groupes de nœuds gérés par EKS
   eks_managed_node_groups = {
-    one = { #autoscaling group information pour le grp de noeuds
-      name = "node-group-1"  # Nom du premier groupe de nœuds
-
-      instance_types = ["t3.small"]  # Type d'instance à utiliser
-
-      min_size     = 1  # Taille minimale du groupe de nœuds
-      max_size     = 3  # Taille maximale du groupe de nœuds
-      desired_size = 2  # Taille désirée du groupe de nœuds
+    one = { # autoscaling group information pour le grp de noeuds
+      name            = "node-group-1"  # Nom du premier groupe de nœuds
+      instance_types  = ["t3.small"]  # Type d'instance à utiliser
+      min_size        = 1  # Taille minimale du groupe de nœuds
+      max_size        = 3  # Taille maximale du groupe de nœuds
+      desired_size    = 2  # Taille désirée du groupe de nœuds
     }
 
     two = {
-      name = "node-group-2"  # Nom du deuxième groupe de nœuds
-
-      instance_types = ["t3.small"]  # Type d'instance à utiliser
-
-      min_size     = 1  # Taille minimale du groupe de nœuds
-      max_size     = 2  # Taille maximale du groupe de nœuds
-      desired_size = 1  # Taille désirée du groupe de nœuds
+      name            = "node-group-2"  # Nom du deuxième groupe de nœuds
+      instance_types  = ["t3.small"]  # Type d'instance à utiliser
+      min_size        = 1  # Taille minimale du groupe de nœuds
+      max_size        = 2  # Taille maximale du groupe de nœuds
+      desired_size    = 1  # Taille désirée du groupe de nœuds
     }
   }
 }
