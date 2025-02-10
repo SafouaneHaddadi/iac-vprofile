@@ -30,3 +30,4 @@ output "cluster_security_group_id" {
   # Valeur de la sortie, ici elle récupère l'ID du groupe de sécurité depuis le module EKS
   value = module.eks.cluster_security_group_id
 }
+#
