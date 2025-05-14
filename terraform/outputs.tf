@@ -1,4 +1,6 @@
 output "cluster_name" {
+  # Une fois l'opération 'terraform apply' terminée avec succès, on obtiendra ces infos : 
+
   description = "Amazon Web Service EKS Cluster Name"
   value       = module.eks.cluster_name
 }
