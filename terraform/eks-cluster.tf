@@ -5,8 +5,8 @@ module "eks" {
   cluster_name    = local.cluster_name
   cluster_version = "1.27"
 
-  vpc_id                         = module.vpc.vpc_id # VPC où le cluster sera déployé
-  subnet_ids                     = module.vpc.private_subnets # subnet privés où les nœuds du cluster seront déployés
+  vpc_id     = module.vpc.vpc_id          # VPC où le cluster sera déployé
+  subnet_ids = module.vpc.private_subnets # subnet privés où les nœuds du cluster seront déployés
 
   cluster_endpoint_public_access = true
 
@@ -15,9 +15,9 @@ module "eks" {
 
   }
 
- # Définition des groupes de nœuds gérés par EKS
+  # Définition des groupes de nœuds gérés par EKS
   eks_managed_node_groups = {
-    one = { 
+    one = {
       name = "node-group-1" #info autoscaling group pour le grp de noeuds
 
       instance_types = ["t3.small"]
