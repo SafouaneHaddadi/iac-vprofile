@@ -1,0 +1,64 @@
+name: "Vprofile Iac"
+on: #événements qui déclencheront le workflow
+  push: 
+    branches:
+      - main
+      - stage
+    paths: #chemins des fichiers qui déclenchent le workflow
+      - terraform/**
+  pull_request:
+    branches:
+      - main
+    paths: 
+      - terraform/** 
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}  # récupère depuis Github secrets
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
+  UCKET_TF_STATE: ${{ secrets.BUCKET_TF_STATE }}  
+  AWS_REGION: us-east-1  
+  EKS_CLUSTER: vprofile-eks  
+
+
+jobs: 
+  terraform:
+    name: "Apply terraform code changes"
+    runs-on: ubuntu-latest #va créer un conteneur w ubuntu images
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./terraform #va "cd" dessus
+
+    steps:
+      - name: Checkout the source code
+        uses: actions/checkout@v4 #voir le marketplace
+
+      - name: Setup Terraform with specified version on the runner
+        uses: hashicorp/setup-terraform@v2  # utilise l'action pour installer Terraform
+        #with:
+         #  terraform_version: 1.10.5
+
+      - name: Terraform init
+        id: init  # id de l'étape pour référence ultérieure
+        run: terraform init -backend-config="bucket=$BUCKET_TF_STATE"  # Initialise Terraform avec le backend S3 pour stocker l'état
+        working-directory: terraform
+
+      - name: Terraform format
+        id: fmt  
+        run: |
+           terraform fmt -check 
+        working-directory: terraform
+
+      - name: Terraform validate
+        id: validate
+        run: terraform validate 
+        
+      - name: Terraform plan
+        id: plan  
+        run: terraform plan -no-color -input=false -out planfile  # génère un plan sans couleur et sans interaction qu'on stocke dans le fichier de plan
+        working-directory: terraform
+        continue-on-error: true  
+      
+      - name: Terraform plan status
+        if: steps.plan.outcome == 'failure'  # on execute cette étape si le plan a échoué
+        run: exit 1  # force l'échec du job si le plan a échoué
